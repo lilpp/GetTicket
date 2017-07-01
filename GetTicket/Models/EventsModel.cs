@@ -13,7 +13,7 @@ namespace GetTicket.Models
         public DateTime EndDate { get; set; }
         public DateTime PurcheEnd { get; set; }
         public string Description { get; set; }
-        public int OwnerID { get; set; }
+        public string OwnerID { get; set; }
         public string LogoImgUrl { get; set; }
 
         public virtual List<TicketsModel> Tickets { get; set; }
