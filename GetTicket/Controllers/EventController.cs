@@ -1,16 +1,18 @@
-﻿using GetTicket.DAL;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GetTicket.Models;
+using Microsoft.AspNet.Identity;
+using GetTicket.Repository;
 using GetTicket.ViewModel;
 
 namespace GetTicket.Controllers
 {
     public class EventController : Controller
     {
+        Repository.Repository _repository = new Repository.Repository();
         // GET: Event
         public ActionResult Index()
         {
@@ -35,7 +37,9 @@ namespace GetTicket.Controllers
         {
             try
             {
-                    return RedirectToAction("Index");
+                var userid = User.Identity.GetUserId();
+                _repository.AddEventToDB(viewModel,userid);
+                return RedirectToAction("Index");
             }
             catch
             {

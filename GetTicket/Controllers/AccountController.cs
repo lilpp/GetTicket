@@ -151,6 +151,7 @@ namespace GetTicket.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userid = UserManager.FindByIdAsync(User.Identity.GetUserId());
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
