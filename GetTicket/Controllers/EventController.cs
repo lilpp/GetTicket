@@ -16,6 +16,10 @@ namespace GetTicket.Controllers
         // GET: Event
         public ActionResult Index()
         {
+            var userId = User.Identity.GetUserId();
+
+            var viewModels = _repository.GetUserEvents(userId);
+
             return View();
         }
 
@@ -38,7 +42,8 @@ namespace GetTicket.Controllers
             try
             {
                 var userid = User.Identity.GetUserId();
-                _repository.AddEventToDB(viewModel,userid);
+
+                _repository.InsertOrUpdateUserEvent(viewModel,userid);
                 return RedirectToAction("Index");
             }
             catch
