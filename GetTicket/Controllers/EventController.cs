@@ -41,8 +41,11 @@ namespace GetTicket.Controllers
         {
             try
             {
+                List<FieldViewModel> list = new List<FieldViewModel>();
+                list.Add(new FieldViewModel() { Name = "asd", InputType = InputType.CheckBox });
+                list.Add(new FieldViewModel() { Name = "szoszi", InputType =  InputType.Text });
+                viewModel.Fields = list;
                 var userid = User.Identity.GetUserId();
-
                 _repository.InsertOrUpdateUserEvent(viewModel,userid);
                 return RedirectToAction("Index");
             }

@@ -12,6 +12,7 @@ namespace GetTicket.Repository
     public class Repository
     {
         DBContext _db = new DBContext();
+#region Event's methods
         /// <summary>
         /// Lekérdezi az adatbázisból Userhez tartozó Eventeket.
         /// </summary>
@@ -53,9 +54,10 @@ namespace GetTicket.Repository
                         PurcheEnd = viewModel.PurcheEnd,
                         Description = viewModel.Description,
                         OwnerID = userId,
-                        LogoImgUrl = viewModel.LogoImgUrl
+                        LogoImgUrl = viewModel.LogoImgUrl,
+                        Fields = viewModel.Fields.Select(x => new FieldsModel { Name = x.Name, InputType = x.InputType.ToString()}).ToList()
                     };
-
+                    
                     _db.EventModels.Add(model);
                     _db.SaveChanges();
                 }
@@ -70,7 +72,8 @@ namespace GetTicket.Repository
                         PurcheEnd = viewModel.PurcheEnd,
                         Description = viewModel.Description,
                         OwnerID = userId,
-                        LogoImgUrl = viewModel.LogoImgUrl
+                        LogoImgUrl = viewModel.LogoImgUrl,
+                        Fields = viewModel.Fields.Select(x => new FieldsModel { Name = x.Name, InputType = x.InputType.ToString()}).ToList()
                     };
 
                     _db.EventModels.Add(model);
@@ -102,5 +105,6 @@ namespace GetTicket.Repository
             }
 
         }
+#endregion
     }
 }

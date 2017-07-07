@@ -24,5 +24,9 @@ namespace GetTicket.ViewModel
         public string Description { get; set; }
         [Display(Name = "Esemény logó")]
         public string LogoImgUrl { get; set; }
+
+        public IEnumerable<FieldViewModel> Fields { get; set; }
+        public IEnumerable<TicketViewModel> Tickets { get; set; }
+
     }
 }
